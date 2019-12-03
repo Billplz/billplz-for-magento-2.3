@@ -39,14 +39,14 @@ define(
                 };
             },
 
-            getTransactionResults: function() {
-                return _.map(window.checkoutConfig.payment.billplz_gateway.transactionResults, function(value, key) {
-                    return {
-                        'value': key,
-                        'transaction_result': value
-                    }
-                });
-            }
+            // getTransactionResults: function() {
+            //     return _.map(window.checkoutConfig.payment.billplz_gateway.transactionResults, function(value, key) {
+            //         return {
+            //             'value': key,
+            //             'transaction_result': value
+            //         }
+            //     });
+            // }
         });
     }
 );
