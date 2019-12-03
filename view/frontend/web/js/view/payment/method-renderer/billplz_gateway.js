@@ -12,6 +12,8 @@ define(
         'use strict';
 
         return Component.extend({
+            redirectAfterPlaceOrder: false,
+
             defaults: {
                 template: 'Billplz_BillplzPaymentGateway/payment/form',
                 // transactionResult: ''
