@@ -5,7 +5,7 @@
  */
 namespace Billplz\BillplzPaymentGateway\Model\Ui;
 
-use Billplz\BillplzPaymentGateway\Gateway\Http\Client\ClientMock;
+// use Billplz\BillplzPaymentGateway\Gateway\Http\Client\ClientMock;
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 /**
@@ -22,15 +22,15 @@ final class ConfigProvider implements ConfigProviderInterface
      */
     public function getConfig()
     {
-        return [
-            'payment' => [
-                self::CODE => [
-                    'transactionResults' => [
-                        ClientMock::SUCCESS => __('Success'),
-                        ClientMock::FAILURE => __('Fraud'),
-                    ],
-                ],
-            ],
-        ];
+        // return [
+        //     'payment' => [
+        //         self::CODE => [
+        //             'transactionResults' => [
+        //                 ClientMock::SUCCESS => __('Success'),
+        //                 ClientMock::FAILURE => __('Fraud'),
+        //             ],
+        //         ],
+        //     ],
+        // ];
     }
 }

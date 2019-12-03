@@ -14,17 +14,17 @@ define(
         return Component.extend({
             defaults: {
                 template: 'Billplz_BillplzPaymentGateway/payment/form',
-                transactionResult: ''
+                // transactionResult: ''
             },
 
-            initObservable: function () {
+            // initObservable: function () {
 
-                this._super()
-                    .observe([
-                        'transactionResult'
-                    ]);
-                return this;
-            },
+            //     this._super()
+            //         .observe([
+            //             'transactionResult'
+            //         ]);
+            //     return this;
+            // },
 
             getCode: function() {
                 return 'billplz_gateway';
@@ -33,10 +33,14 @@ define(
             getData: function() {
                 return {
                     'method': this.item.method,
-                    'additional_data': {
-                        'transaction_result': this.transactionResult()
-                    }
+                    // 'additional_data': {
+                    //     'transaction_result': this.transactionResult()
+                    // }
                 };
+            },
+
+            afterPlaceOrder: function () {
+                window.location.replace("https://www.billplz.com");
             },
 
             // getTransactionResults: function() {
