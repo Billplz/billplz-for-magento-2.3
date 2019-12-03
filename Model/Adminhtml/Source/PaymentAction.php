@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Model\Adminhtml\Source;
+namespace Billplz\BillplzPaymentGateway\Model\Adminhtml\Source;
 
 use Magento\Payment\Model\Method\AbstractMethod;
 
@@ -20,8 +20,8 @@ class PaymentAction implements \Magento\Framework\Option\ArrayInterface
         return [
             [
                 'value' => AbstractMethod::ACTION_AUTHORIZE,
-                'label' => __('Authorize')
-            ]
+                'label' => __('Authorize'),
+            ],
         ];
     }
 }

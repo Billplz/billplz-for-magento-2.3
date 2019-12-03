@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Gateway\Http\Client;
+namespace Billplz\BillplzPaymentGateway\Gateway\Http\Client;
 
 use Magento\Payment\Gateway\Http\ClientInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
@@ -19,7 +19,7 @@ class ClientMock implements ClientInterface
      */
     private $results = [
         self::SUCCESS,
-        self::FAILURE
+        self::FAILURE,
     ];
 
     /**
@@ -53,7 +53,7 @@ class ClientMock implements ClientInterface
         $this->logger->debug(
             [
                 'request' => $transferObject->getBody(),
-                'response' => $response
+                'response' => $response,
             ]
         );
 
@@ -71,7 +71,7 @@ class ClientMock implements ClientInterface
         return array_merge(
             [
                 'RESULT_CODE' => $resultCode,
-                'TXN_ID' => $this->generateTxnId()
+                'TXN_ID' => $this->generateTxnId(),
             ],
             $this->getFieldsBasedOnResponseType($resultCode)
         );
@@ -96,7 +96,7 @@ class ClientMock implements ClientInterface
         $headers = $transfer->getHeaders();
 
         if (isset($headers['force_result'])) {
-            return (int)$headers['force_result'];
+            return (int) $headers['force_result'];
         }
 
         return $this->results[mt_rand(0, 1)];
@@ -115,8 +115,8 @@ class ClientMock implements ClientInterface
                 return [
                     'FRAUD_MSG_LIST' => [
                         'Stolen card',
-                        'Customer location differs'
-                    ]
+                        'Customer location differs',
+                    ],
                 ];
         }
 

@@ -3,11 +3,11 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Gateway\Request;
+namespace Billplz\BillplzPaymentGateway\Gateway\Request;
 
 use Magento\Payment\Gateway\ConfigInterface;
-use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
+use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 
 class VoidRequest implements BuilderInterface
@@ -56,7 +56,7 @@ class VoidRequest implements BuilderInterface
             'MERCHANT_KEY' => $this->config->getValue(
                 'merchant_gateway_key',
                 $order->getStoreId()
-            )
+            ),
         ];
     }
 }

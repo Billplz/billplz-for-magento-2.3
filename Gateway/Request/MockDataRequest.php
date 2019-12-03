@@ -3,11 +3,11 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Gateway\Request;
+namespace Billplz\BillplzPaymentGateway\Gateway\Request;
 
+use Billplz\BillplzPaymentGateway\Gateway\Http\Client\ClientMock;
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Request\BuilderInterface;
-use Magento\SamplePaymentGateway\Gateway\Http\Client\ClientMock;
 
 class MockDataRequest implements BuilderInterface
 {
@@ -34,8 +34,8 @@ class MockDataRequest implements BuilderInterface
         $transactionResult = $payment->getAdditionalInformation('transaction_result');
         return [
             self::FORCE_RESULT => $transactionResult === null
-                ? ClientMock::SUCCESS
-                : $transactionResult
+            ? ClientMock::SUCCESS
+            : $transactionResult,
         ];
     }
 }

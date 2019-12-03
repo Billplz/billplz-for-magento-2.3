@@ -16,8 +16,8 @@ define(
         'use strict';
         rendererList.push(
             {
-                type: 'sample_gateway',
-                component: 'Magento_SamplePaymentGateway/js/view/payment/method-renderer/sample_gateway'
+                type: 'billplz_gateway',
+                component: 'Billplz_BillplzPaymentGateway/js/view/payment/method-renderer/billplz_gateway'
             }
         );
         /** Add view logic here if needed */

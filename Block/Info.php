@@ -3,11 +3,11 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Block;
+namespace Billplz\BillplzPaymentGateway\Block;
 
+use Billplz\BillplzPaymentGateway\Gateway\Response\FraudHandler;
 use Magento\Framework\Phrase;
 use Magento\Payment\Block\ConfigurableInfo;
-use Magento\SamplePaymentGateway\Gateway\Response\FraudHandler;
 
 class Info extends ConfigurableInfo
 {

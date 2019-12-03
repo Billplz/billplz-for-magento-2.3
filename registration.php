@@ -6,6 +6,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Magento_SamplePaymentGateway',
+    'Billplz_BillplzPaymentGateway',
     __DIR__
 );

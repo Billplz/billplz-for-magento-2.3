@@ -3,17 +3,17 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Model\Ui;
+namespace Billplz\BillplzPaymentGateway\Model\Ui;
 
+use Billplz\BillplzPaymentGateway\Gateway\Http\Client\ClientMock;
 use Magento\Checkout\Model\ConfigProviderInterface;
-use Magento\SamplePaymentGateway\Gateway\Http\Client\ClientMock;
 
 /**
  * Class ConfigProvider
  */
 final class ConfigProvider implements ConfigProviderInterface
 {
-    const CODE = 'sample_gateway';
+    const CODE = 'billplz_gateway';
 
     /**
      * Retrieve assoc array of checkout configuration
@@ -27,10 +27,10 @@ final class ConfigProvider implements ConfigProviderInterface
                 self::CODE => [
                     'transactionResults' => [
                         ClientMock::SUCCESS => __('Success'),
-                        ClientMock::FAILURE => __('Fraud')
-                    ]
-                ]
-            ]
+                        ClientMock::FAILURE => __('Fraud'),
+                    ],
+                ],
+            ],
         ];
     }
 }

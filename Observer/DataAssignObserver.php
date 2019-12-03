@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Observer;
+namespace Billplz\BillplzPaymentGateway\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Payment\Observer\AbstractDataAssignObserver;
@@ -26,6 +26,7 @@ class DataAssignObserver extends AbstractDataAssignObserver
                 'transaction_result',
                 $data->getDataByKey('transaction_result')
             );
+            error_log("testqwertyuiop");
         }
     }
 }

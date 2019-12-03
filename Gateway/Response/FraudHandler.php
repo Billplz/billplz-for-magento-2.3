@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Gateway\Response;
+namespace Billplz\BillplzPaymentGateway\Gateway\Response;
 
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Response\HandlerInterface;
@@ -38,7 +38,7 @@ class FraudHandler implements HandlerInterface
 
         $payment->setAdditionalInformation(
             self::FRAUD_MSG_LIST,
-            (array)$response[self::FRAUD_MSG_LIST]
+            (array) $response[self::FRAUD_MSG_LIST]
         );
 
         /** @var $payment Payment */

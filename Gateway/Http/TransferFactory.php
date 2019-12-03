@@ -3,12 +3,12 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\SamplePaymentGateway\Gateway\Http;
+namespace Billplz\BillplzPaymentGateway\Gateway\Http;
 
+use Billplz\BillplzPaymentGateway\Gateway\Request\MockDataRequest;
 use Magento\Payment\Gateway\Http\TransferBuilder;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
-use Magento\SamplePaymentGateway\Gateway\Request\MockDataRequest;
 
 class TransferFactory implements TransferFactoryInterface
 {
@@ -40,8 +40,8 @@ class TransferFactory implements TransferFactoryInterface
             ->setHeaders(
                 [
                     'force_result' => isset($request[MockDataRequest::FORCE_RESULT])
-                        ? $request[MockDataRequest::FORCE_RESULT]
-                        : null
+                    ? $request[MockDataRequest::FORCE_RESULT]
+                    : null,
                 ]
             )
             ->build();
