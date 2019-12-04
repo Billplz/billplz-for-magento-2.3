@@ -6,9 +6,10 @@
 /*global define*/
 define(
     [
-        'Magento_Checkout/js/view/payment/default'
+        'Magento_Checkout/js/view/payment/default',
+        'mage/url'
     ],
-    function (Component) {
+    function (Component, url) {
         'use strict';
 
         return Component.extend({
@@ -41,8 +42,9 @@ define(
                 };
             },
 
+            // https://magento.stackexchange.com/questions/139071/get-base-url-or-dynamic-url-in-view-js-or-html-files
             afterPlaceOrder: function () {
-                window.location.replace("https://www.billplz.com");
+                window.location.replace(url.build('billplz/checkout/index'));
             },
 
             // getTransactionResults: function() {
