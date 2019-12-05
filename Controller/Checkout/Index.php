@@ -61,14 +61,27 @@ class Index extends AbstractAction
         return $data;
     }
 
-    private function redirectToBill($shouldRedirect, $payload)
+    private function redirectToBill($shouldRedirect, $bill)
     {
         if ($shouldRedirect) {
-            header('Location: ' . $payload['url']);
+            $this->renderRedirect($bill['url']);
         } else {
             $this->getLogger()->debug('Bill creation failed: ' . print_r($payload, true));
             $this->_redirect('checkout/cart');
         }
+    }
+
+    private function renderRedirect($bill_url)
+    {
+        echo
+            "<html>
+            <body>
+            <a href=\"$bill_url\">Click here to Pay</a>
+            </body>
+            <script>
+                window.location.replace(\"$bill_url\");
+            </script>
+            </html>";
     }
 
     /**
@@ -80,8 +93,6 @@ class Index extends AbstractAction
     {
         try {
             $order = $this->getOrder();
-            list($rheader, $bill) = $this->createBill($order);
-            $this->redirectToBill($rheader === 200, $bill);
             if ($order->getState() === Order::STATE_PENDING_PAYMENT) {
                 list($rheader, $bill) = $this->createBill($order);
                 $this->redirectToBill($rheader === 200, $bill);
