@@ -17,9 +17,14 @@
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
                 </field>
-                <field id="merchant_gateway_key" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Merchant Gateway Key</label>
-                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                <field id="api_key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>API Secret Key</label>
+                </field>
+                <field id="collection_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Collection ID</label>
+                </field>
+                <field id="x_signature" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>X Signature</label>
                 </field>
                 <field id="debug" translate="label" type="select" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Debug</label>
