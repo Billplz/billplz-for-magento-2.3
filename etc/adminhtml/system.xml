@@ -30,11 +30,6 @@
                     <label>Debug</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="130" showInDefault="9"
-                       showInWebsite="1" showInStore="0">
-                    <label>Payment From Applicable Countries</label>
-                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
-                </field>
                 <field id="specificcountry" translate="label" type="multiselect" sortOrder="140" showInDefault="1"
                        showInWebsite="1" showInStore="0">
                     <label>Payment From Specific Countries</label>

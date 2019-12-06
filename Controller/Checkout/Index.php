@@ -81,11 +81,10 @@ class Index extends AbstractAction
                 list($rheader, $bill) = $this->createBill($order);
                 $this->redirectToBill($rheader === 200, $bill);
             } else if ($order->getState() === Order::STATE_CANCELED) {
-                // $errorMessage = $this->getCheckoutSession()->getOxipayErrorMessage(); //set in InitializationRequest
-                $errorMessage = "To do";
+                $errorMessage = $this->getCheckoutSession()->getBillplzErrorMessage(); //set in InitializationRequest
                 if ($errorMessage) {
                     $this->getMessageManager()->addWarningMessage($errorMessage);
-                    $errorMessage = $this->getCheckoutSession()->unsOxipayErrorMessage();
+                    $errorMessage = $this->getCheckoutSession()->unsBillplzErrorMessage();
                 }
                 $this->getCheckoutHelper()->restoreQuote(); //restore cart
                 $this->_redirect('checkout/cart');

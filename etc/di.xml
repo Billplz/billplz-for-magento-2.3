@@ -56,6 +56,7 @@
     <type name="Billplz\BillplzPaymentGateway\Gateway\Request\InitializationRequest">
         <arguments>
             <argument name="config" xsi:type="object">Billplz\BillplzPaymentGateway\Gateway\Config\Config</argument>
+            <argument name="logger" xsi:type="object">BillplzPaymentGatewayLogger</argument>
         </arguments>
     </type>
 
