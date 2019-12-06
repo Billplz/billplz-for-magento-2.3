@@ -2,6 +2,8 @@
 
 namespace Billplz\BillplzPaymentGateway\Controller\Checkout;
 
+use Billplz\BillplzPaymentGateway\Model\BillplzAPI;
+use Billplz\BillplzPaymentGateway\Model\BillplzConnect;
 use Magento\Sales\Model\Order;
 
 /**
@@ -19,47 +21,28 @@ class Index extends AbstractAction
 
         $orderId = $order->getRealOrderId();
         $gatewayConf = $this->getGatewayConfig();
+        $billingAddress = $order->getBillingAddress();
 
-        return [200, array("url" => "https://www.billplz.com/" . $gatewayConf->getCollectionId())];
-
-        // $order->getOrderCurrencyCode() // String: MYR ??
-
-        $data = array(
-            'x_currency' => '',
-            'x_url_callback' => $this->getDataHelper()->getCompleteUrl(),
-            'x_url_complete' => $this->getDataHelper()->getCompleteUrl(),
-            'x_url_cancel' => $this->getDataHelper()->getCancelledUrl($orderId),
-            'x_shop_name' => $this->getDataHelper()->getStoreCode(),
-            'x_account_id' => $this->getGatewayConfig()->getMerchantNumber(),
-            'x_reference' => $orderId,
-            'x_invoice' => $orderId,
-            'x_amount' => $order->getTotalDue(),
-            'x_customer_first_name' => $order->getCustomerFirstname(),
-            'x_customer_last_name' => $order->getCustomerLastname(),
-            'x_customer_email' => $order->getData('customer_email'),
-            'x_customer_phone' => $billingAddress->getData('telephone'),
-            'x_customer_billing_address1' => $billingAddressParts[0],
-            'x_customer_billing_address2' => count($billingAddressParts) > 1 ? $billingAddressParts[1] : '',
-            'x_customer_billing_city' => $billingAddress->getData('city'),
-            'x_customer_billing_state' => $billingAddress->getData('region'),
-            'x_customer_billing_zip' => $billingAddress->getData('postcode'),
-            'x_customer_shipping_address1' => $shippingAddressParts[0],
-            'x_customer_shipping_address2' => count($shippingAddressParts) > 1 ? $shippingAddressParts[1] : '',
-            'x_customer_shipping_city' => $shippingAddress->getData('city'),
-            'x_customer_shipping_state' => $shippingAddress->getData('region'),
-            'x_customer_shipping_zip' => $shippingAddress->getData('postcode'),
-            'x_test' => 'false',
+        $parameter = array(
+            'collection_id' => trim($gatewayConf->getCollectionId()),
+            'email' => $order->getData('customer_email'),
+            'mobile' => $billingAddress->getData('telephone'),
+            'name' => $order->getCustomerFirstname() . $order->getCustomerLastname(),
+            'amount' => $order->getTotalDue() * 100,
+            'callback_url' => 'http://google.com',
+            'description' => "Order $orderId",
+        );
+        $optional = array(
+            'redirect_url' => 'http://google.com',
         );
 
-        foreach ($data as $key => $value) {
-            $data[$key] = preg_replace('/\r\n|\r|\n/', ' ', $value);
-        }
+        $connect = new BillplzConnect(trim($gatewayConf->getApiKey()));
+        $connect->detectMode();
 
-        $apiKey = $this->getGatewayConfig()->getApiKey();
-        $signature = $this->getCryptoHelper()->generateSignature($data, $apiKey);
-        $data['x_signature'] = $signature;
+        $billplz = new BillplzAPI($connect);
+        return $billplz->toArray($billplz->createBill($parameter, $optional));
 
-        return $data;
+        // $order->getOrderCurrencyCode() // String: MYR ??
     }
 
     private function redirectToBill($shouldRedirect, $bill)
