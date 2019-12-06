@@ -37,6 +37,11 @@ class InitializationRequest implements BuilderInterface
      */
     private function validateQuote(OrderAdapter $order)
     {
+
+        if ($order->getCurrencyCode() !== 'MYR') {
+            return false;
+        }
+
         $this->_logger->debug(['[InitializationRequest][validateQuote]$this->_gatewayConfig->getSpecificCountry():' . ($this->_gatewayConfig->getSpecificCountry())]);
         $allowedCountriesArray = explode(',', $this->_gatewayConfig->getSpecificCountry());
 

@@ -40,7 +40,14 @@ class Index extends AbstractAction
         $connect->detectMode();
 
         $billplz = new BillplzAPI($connect);
-        return $billplz->toArray($billplz->createBill($parameter, $optional));
+        $payload = $billplz->toArray($billplz->createBill($parameter, $optional));
+
+        $order->setState(\Magento\Sales\Model\Order::STATE_PENDING_PAYMENT);
+        $order->addCommentToStatusHistory("Collection ID: {$parameter['collection_id']}; Bill: {$payload[1]['id']}; Status: Pending Payment; Bill URL: {$payload[1]['url']}", true, true);
+        $order->setData('billplz_bill_id', $payload[1]['id']);
+        $order->save();
+
+        return $payload;
 
         // $order->getOrderCurrencyCode() // String: MYR ??
     }

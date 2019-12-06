@@ -32,16 +32,6 @@ class Config extends \Magento\Payment\Gateway\Config\Config
         return $this->getValue('x_signature');
     }
 
-    public function getDueOrderStatus()
-    {
-        return $this->getValue('due_order_status');
-    }
-
-    public function getApprovedOrderStatus()
-    {
-        return $this->getValue('approved_order_status');
-    }
-
     /**
      * Check if customer is to be notified
      * @return boolean
