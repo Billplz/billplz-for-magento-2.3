@@ -60,7 +60,7 @@ class Index extends AbstractAction
         echo
             "<html>
             <body>
-            <a href=\"$bill_url\">Click here to Pay</a>
+            <a href=\"$bill_url\">Redirecting to Bill</a>
             </body>
             <script>
                 window.location.replace(\"$bill_url\");
