@@ -18,8 +18,9 @@ class Index extends AbstractAction
         }
 
         $orderId = $order->getRealOrderId();
+        $gatewayConf = $this->getGatewayConfig();
 
-        return [200, array("url" => "https://www.billplz.com")];
+        return [200, array("url" => "https://www.billplz.com/" . $gatewayConf->getCollectionId())];
 
         // $order->getOrderCurrencyCode() // String: MYR ??
 

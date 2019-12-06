@@ -3,6 +3,7 @@
 namespace Billplz\BillplzPaymentGateway\Controller\Checkout;
 
 use Billplz\BillplzPaymentGateway\Gateway\Config\Config;
+use Billplz\BillplzPaymentGateway\Helper\Checkout;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -23,6 +24,8 @@ abstract class AbstractAction extends Action
 
     private $_orderFactory;
 
+    private $_checkoutHelper;
+
     private $_gatewayConfig;
 
     private $_messageManager;
@@ -34,10 +37,12 @@ abstract class AbstractAction extends Action
         Session $checkoutSession,
         Context $context,
         OrderFactory $orderFactory,
+        Checkout $checkoutHelper,
         LoggerInterface $logger) {
         parent::__construct($context);
         $this->_checkoutSession = $checkoutSession;
         $this->_orderFactory = $orderFactory;
+        $this->_checkoutHelper = $checkoutHelper;
         $this->_gatewayConfig = $gatewayConfig;
         $this->_messageManager = $context->getMessageManager();
         $this->_logger = $logger;
@@ -56,6 +61,11 @@ abstract class AbstractAction extends Action
     protected function getOrderFactory()
     {
         return $this->_orderFactory;
+    }
+
+    protected function getCheckoutHelper()
+    {
+        return $this->_checkoutHelper;
     }
 
     protected function getGatewayConfig()

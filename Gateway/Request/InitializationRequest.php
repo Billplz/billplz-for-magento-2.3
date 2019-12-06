@@ -2,7 +2,7 @@
 
 namespace Billplz\BillplzPaymentGateway\Gateway\Request;
 
-use Billplz\BillplzPaymentGateway\Model\Ui\ConfigProvider;
+use Billplz\BillplzPaymentGateway\Gateway\Config\Config;
 use Magento\Checkout\Model\Session;
 use Magento\Payment\Gateway\Data\Order\OrderAdapter;
 use Magento\Payment\Gateway\Request\BuilderInterface;
@@ -21,7 +21,7 @@ class InitializationRequest implements BuilderInterface
      * @param Session $session
      */
     public function __construct(
-        ConfigProvider $gatewayConfig,
+        Config $gatewayConfig,
         LoggerInterface $logger,
         Session $session
     ) {
@@ -38,24 +38,6 @@ class InitializationRequest implements BuilderInterface
     private function validateQuote(OrderAdapter $order)
     {
         return true;
-        $total = $order->getGrandTotalAmount();
-        if ($total < 20) {
-            $this->_session->setOxipayErrorMessage(__("Oxipay doesn't support purchases less than $20."));
-            return false;
-        }
-
-        if ($this->_gatewayConfig->isAus()) {
-            if ($total > 2100) {
-                $this->_session->setOxipayErrorMessage(__("Oxipay doesn't support purchases over $2100."));
-                return false;
-            }
-        } else {
-            if ($total > 1500) {
-                $this->_session->setOxipayErrorMessage(__("Oxipay doesn't support purchases over $1500."));
-                return false;
-            }
-        }
-
         $this->_logger->debug('[InitializationRequest][validateQuote]$this->_gatewayConfig->getSpecificCountry():' . ($this->_gatewayConfig->getSpecificCountry()));
         $allowedCountriesArray = explode(',', $this->_gatewayConfig->getSpecificCountry());
 
