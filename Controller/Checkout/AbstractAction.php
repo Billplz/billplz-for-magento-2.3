@@ -113,6 +113,17 @@ abstract class AbstractAction extends Action
         return $order;
     }
 
+    protected function getOrderByBillplzBillId($attribute, $value)
+    {
+        $order = $this->_orderFactory->create()->loadByAttribute($attribute, $value);
+
+        if (!$order->getId()) {
+            return null;
+        }
+
+        return $order;
+    }
+
     protected function getObjectManager()
     {
         return \Magento\Framework\App\ObjectManager::getInstance();

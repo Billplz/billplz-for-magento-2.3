@@ -26,7 +26,6 @@ class DataAssignObserver extends AbstractDataAssignObserver
                 'transaction_result',
                 $data->getDataByKey('transaction_result')
             );
-            error_log("observerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         }
     }
 }

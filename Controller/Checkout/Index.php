@@ -27,7 +27,7 @@ class Index extends AbstractAction
             'collection_id' => trim($gatewayConf->getCollectionId()),
             'email' => $order->getData('customer_email'),
             'mobile' => $billingAddress->getData('telephone'),
-            'name' => $order->getCustomerFirstname() . $order->getCustomerLastname(),
+            'name' => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
             'amount' => $order->getTotalDue() * 100,
             'callback_url' => $this->getUrlHelper()->getCallbackUrl(),
             'description' => "Order $orderId",
