@@ -78,9 +78,8 @@ class Redirect extends AbstractAction
         $transaction->save();
 
         $order->setState(Order::STATE_PROCESSING);
-        $order->setStatus($order->getConfig()->getStateDefaultStatus(Order::STATE_PROCESSING));
-        $order->addStatusHistoryComment("Billplz bill payment success. Bill $bill_id");
-        $order->setIsCustomerNotified(true);
+        $order->addStatusToHistory($order->getConfig()->getStateDefaultStatus(Order::STATE_PROCESSING), "Billplz bill payment success. Bill $bill_id", true);
+        $order->setIsNotified(true);
         $order->save();
     }
 }
