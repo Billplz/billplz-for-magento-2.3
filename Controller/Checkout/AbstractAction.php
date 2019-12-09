@@ -4,6 +4,7 @@ namespace Billplz\BillplzPaymentGateway\Controller\Checkout;
 
 use Billplz\BillplzPaymentGateway\Gateway\Config\Config;
 use Billplz\BillplzPaymentGateway\Helper\Checkout;
+use Billplz\BillplzPaymentGateway\Helper\UrlCallbackRedirect;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -37,6 +38,7 @@ abstract class AbstractAction extends Action
         Session $checkoutSession,
         Context $context,
         OrderFactory $orderFactory,
+        UrlCallbackRedirect $urlHelper,
         Checkout $checkoutHelper,
         LoggerInterface $logger) {
         parent::__construct($context);
@@ -46,11 +48,17 @@ abstract class AbstractAction extends Action
         $this->_gatewayConfig = $gatewayConfig;
         $this->_messageManager = $context->getMessageManager();
         $this->_logger = $logger;
+        $this->_urlHelper = $urlHelper;
     }
 
     protected function getContext()
     {
         return $this->_context;
+    }
+
+    protected function getUrlHelper()
+    {
+        return $this->_urlHelper;
     }
 
     protected function getCheckoutSession()

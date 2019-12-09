@@ -29,11 +29,11 @@ class Index extends AbstractAction
             'mobile' => $billingAddress->getData('telephone'),
             'name' => $order->getCustomerFirstname() . $order->getCustomerLastname(),
             'amount' => $order->getTotalDue() * 100,
-            'callback_url' => 'http://google.com',
+            'callback_url' => $this->getUrlHelper()->getCallbackUrl(),
             'description' => "Order $orderId",
         );
         $optional = array(
-            'redirect_url' => 'http://google.com',
+            'redirect_url' => $this->getUrlHelper()->getRedirectUrl(),
         );
 
         $connect = new BillplzConnect(trim($gatewayConf->getApiKey()));
