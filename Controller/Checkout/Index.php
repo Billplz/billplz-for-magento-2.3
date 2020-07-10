@@ -35,6 +35,14 @@ class Index extends AbstractAction
         $optional = array(
             'redirect_url' => $this->getUrlHelper()->getRedirectUrl(),
         );
+        
+        if (empty($parameter['mobile']) && empty($parameter['email'])) {
+            $parameter['email'] = 'noreply@billplz.com';
+        }
+
+        if (empty($parameter['name'])) {
+            $parameter['name'] =  'Payer Name Unavailable';
+        }
 
         $connect = new BillplzConnect(trim($gatewayConf->getApiKey()));
         $connect->detectMode();
